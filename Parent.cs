@@ -8,9 +8,22 @@ namespace PolymorphismDemo
 {
     internal class Parent
     {
+        //Method overloading
         public void Show()
         {
             Console.WriteLine("Parent class show method");
+        }
+
+        //Method overriding
+        public virtual void Display()
+        {
+            Console.WriteLine("Parent class Display method");
+        }
+
+
+        public virtual void PutData()
+        {
+            Console.WriteLine("Parent class Pudtada method");
         }
     }
 }
