@@ -1,79 +1,64 @@
 ﻿
 
-using PolymorphismDemo;
+
+public class Parent
+{
+    public void Show() { Console.WriteLine("Parent class show method"); }
+    public virtual void Display() { Console.WriteLine("Parent class display method"); }
+    public void Putdata() { Console.WriteLine("Parent class Putdata method"); }
+}
+
+
+public class Child : Parent
+{
+    public void Show(int a) { Console.WriteLine("child class show method"); } //method overloading
+
+    public override void Display()//Medhod overriding
+    {
+        Console.WriteLine("child class dispaly method");
+        Parent p = new Parent();
+        p.Display();   //calling to Parent class methods
+        p.Putdata();  //calling to Parent class methods
+    }
+
+    public new void Putdata() //Method Hiding
+    {
+        Console.WriteLine("child class show Putdata");
+        base.Display();//calling to Parent class methods
+        base.Putdata();//calling to Parent class methods
+    }   
+}
 
 public class Program
 {
     public static void Main()
     {
-        //Doctor doctor = new Doctor();
-        //doctor.Operations("Heart Surgery");
-
-
-        //Arithmetic arithmetic = new Arithmetic();
-        //arithmetic.Add();
-        //arithmetic.Add(10);
-        //arithmetic.Add(10.5f, 20);
-        //arithmetic.Add(10.0F, 20.5f);
-        //arithmetic.Add(10, 20);
-        //arithmetic.Add(20.5f, 10);
-        //arithmetic.Add(20, 20);
-        //arithmetic.Add(10, 20.5f);
-
-
-
-
-
-
-        //Q what is variable , instace and reference?
-
-        Parent parent = new Parent();
-        Child child = new Child();
-
-        Parent P;
-        Child C;
-
-
-        //   P = child;
-
-        //P.Show();
-        //P.Display();
-        //P.Show(10);
+        Child c = new Child();
+        c.Show();  //Parent class show method
+        c.Show(10);//Child class show method
+        c.Display();//Child class Display method
+        c.Putdata();//Child class Putdata method
         
-        
+        Parent p = new Parent();
+        p.Show(); //Parnet class show method
+        p.Display();//Parnet class show method
+        p.Putdata();//Parnet class show method
 
-       
+        //p.Show(10);  //invalid
+        Parent parent;
+        Child child;
 
-
-
-
-
-
-
-
-
-        child.Show();//  Parent class show method        
-        child.Show(10);//Child Class Show Method
-
-        child.Display();// Child class Display method
+         parent = c;
+        //child = p; invalid
 
 
-       
-        parent.Show();  //Parent class show method
-
-        parent.Display();// Parent class dispaly Method
-
-        parent.PutData(); //parent class putdata method
-
-        child.PutData();//child class putdata mehtod.
-
-
-
-
-
-
-
-
+        parent.Display();//child class mehtod
+        parent.Putdata();//child class mehtod
+        //parent.Show(10);  // because this method is purely defined in the child class
+        //
+        parent = p;
+        parent.Display(); //parent class mehtod
+        parent.Putdata();//parent class mehtod
 
     }
 }
