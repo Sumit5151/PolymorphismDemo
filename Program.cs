@@ -3,62 +3,56 @@
 
 public class Parent
 {
-    public void Show() { Console.WriteLine("Parent class show method"); }
-    public virtual void Display() { Console.WriteLine("Parent class display method"); }
-    public void Putdata() { Console.WriteLine("Parent class Putdata method"); }
-}
+    public int Id { get; set; }
+    public string Name { get; set; }
 
-
-public class Child : Parent
-{
-    public void Show(int a) { Console.WriteLine("child class show method"); } //method overloading
-
-    public override void Display()//Medhod overriding
+    //Default / Paremeterless constructor
+    public Parent()
     {
-        Console.WriteLine("child class dispaly method");
-        Parent p = new Parent();
-        p.Display();   //calling to Parent class methods
-        p.Putdata();  //calling to Parent class methods
+        this.Id = 1;
+        this.Name = "Amit";
+        Console.WriteLine("Default constructor called");
     }
 
-    public new void Putdata() //Method Hiding
+    //Parameterized constructor
+    public Parent(int id, string name)
     {
-        Console.WriteLine("child class show Putdata");
-        base.Display();//calling to Parent class methods
-        base.Putdata();//calling to Parent class methods
-    }   
+        this.Id = id;
+        this.Name = name;
+        Console.WriteLine("Parameterized constructor called");
+    }
+
+    public Parent(string name, int id)
+    {
+        this.Id = id;
+        this.Name = name;
+        Console.WriteLine("Parameterized constructor called");
+    }
+
+    public void Show()
+    {
+
+    }
+    public void Show(int a, int b)
+    {
+
+    }
+
 }
+
 
 public class Program
 {
     public static void Main()
     {
-        Child c = new Child();
-        c.Show();  //Parent class show method
-        c.Show(10);//Child class show method
-        c.Display();//Child class Display method
-        c.Putdata();//Child class Putdata method
-        
         Parent p = new Parent();
-        p.Show(); //Parnet class show method
-        p.Display();//Parnet class show method
-        p.Putdata();//Parnet class show method
-
-        //p.Show(10);  //invalid
-        Parent parent;
-        Child child;
-
-         parent = c;
-        //child = p; invalid
+        Parent p2 = new Parent(2, "Vijay");
+        Parent p3 = new Parent("Abhijeet", 3);
 
 
-        parent.Display();//child class mehtod
-        parent.Putdata();//child class mehtod
-        //parent.Show(10);  // because this method is purely defined in the child class
-        //
-        parent = p;
-        parent.Display(); //parent class mehtod
-        parent.Putdata();//parent class mehtod
 
+        Console.WriteLine(p.Id + " " + p3.Name);
+        p.Show();
+        p.Show(10, 20);
     }
 }
